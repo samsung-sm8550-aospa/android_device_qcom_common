@@ -65,9 +65,18 @@ PRODUCT_PACKAGES += \
     libssrec \
     libtinycompress \
     libvolumelistener \
-    sound_trigger.primary.$(TARGET_BOARD_PLATFORM) \
-    vendor.qti.hardware.pal@1.0.vendor \
-    vendor.qti.hardware.AGMIPC@1.0.vendor
+    sound_trigger.primary.$(TARGET_BOARD_PLATFORM)
+
+ifneq (,$(filter 5.10 5.15, $(TARGET_KERNEL_VERSION)))
+PRODUCT_PACKAGES += \
+    agmcap \
+    agmcompressplay \
+    agmplay \
+    libagm_compress_plugin \
+    libagm_mixer_plugin \
+    libagm_pcm_plugin \
+    libpalclient
+endif
 
 # Permissions
 PRODUCT_COPY_FILES += \
